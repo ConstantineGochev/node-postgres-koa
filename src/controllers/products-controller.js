@@ -1,8 +1,16 @@
+const db = require("../db")
 module.exports = {
-   async all(ctx) {
-      ctx.body = {};
-   },
-   async add_one(ctx) {},
-   async update_one(ctx) {},
-   async delete_one(ctx) {}
+  all(ctx) {
+    db.query("SELECT * FROM products", (err, products) => {
+      if (err) {
+        return next(err)
+      }
+      ctx.body = {
+        products
+      };
+    })
+  },
+  async add_one(ctx) {},
+  async update_one(ctx) {},
+  async delete_one(ctx) {}
 };
