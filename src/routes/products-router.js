@@ -3,9 +3,10 @@ const ctrl = require('../controllers').products;
 const router = new Router();
 
 //const auth = require('../middleware/auth-required-middleware');
-router.get('/products/all', ctrl.all);
-router.post('/products/add-one', ctrl.add_one);
-router.put('/products/update-one', ctrl.update_one);
-router.del('/products/delete-one', ctrl.delete_one);
+router.param("id", ctrl.by_id)
+router.get('/products/', ctrl.get);
+router.post('/products/', ctrl.post);
+router.put('/products/:id', ctrl.put);
+router.del('/products/:id', ctrl.del);
 
 module.exports = router.routes();

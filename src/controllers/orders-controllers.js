@@ -1,8 +1,11 @@
 const db = require("../db")
 module.exports = {
-  async all(ctx) {
+  async by_id(id, ctx, next) {
+    await next()
+  },
+  async get(ctx) {
     ctx.body = {};
   },
-  async add_one(ctx) {},
-  async update_status(ctx) {}
+  async post(ctx) {},
+  async put(ctx) {}
 };
