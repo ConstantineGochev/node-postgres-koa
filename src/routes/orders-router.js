@@ -5,6 +5,6 @@ const auth = require('../middleware/auth-required-middleware');
 
 router.get('/orders/', ctrl.get);
 router.post('/orders/', ctrl.post);
-router.put('/orders/:id', auth, ctrl.status.put);
+router.put('/order/status/:id', auth, ctrl.status.put);
 
 module.exports = router.routes();
