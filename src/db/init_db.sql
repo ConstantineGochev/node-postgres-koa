@@ -18,5 +18,8 @@ CREATE TABLE IF NOT EXISTS
       users(
         id SERIAL PRIMARY KEY,
         name VARCHAR(128) NOT NULL,
+        password VARCHAR(128) NOT NULL
       );
-INSERT INTO users(name) VALUES('Admin');
+INSERT INTO users(name, password)
+      VALUES
+      	('test_admin', 'test');

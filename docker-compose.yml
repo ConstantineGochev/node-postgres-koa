@@ -7,12 +7,10 @@ services:
          context: ./
       networks:
          - backend
-      links:
-         - db
       ports:
-         - "4000:4000"
+         - "3000:3000"
       depends_on:
-         - db
+        - db
    db:
       image: postgres
       restart: always
@@ -21,7 +19,11 @@ services:
          POSTGRES_USER: test_user
          POSTGRES_DB: test_db
       volumes:
-        ./datadir:/var/lib/postgresql/data
+        - ./datadir:/var/lib/postgresql/data
+      networks:
+        - backend
+      ports:
+        - "5432:5432"
 networks:
    backend:
       driver: bridge

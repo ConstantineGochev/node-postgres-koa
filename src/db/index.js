@@ -24,7 +24,7 @@ function init_db() {
   pool
     .query(sql)
     .then(res => {
-      console.log(res);
+      //console.log(res);
       pool.end();
     })
     .catch(err => {

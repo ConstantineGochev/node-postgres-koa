@@ -15,6 +15,6 @@ db:
   client: pg
   user: test_user
   password: 123
-  host: localhost
+  host: db
   database: test_db
   port: 5432
