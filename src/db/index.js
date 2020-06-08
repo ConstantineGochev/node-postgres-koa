@@ -2,14 +2,15 @@ const {
   Pool
 } = require('pg')
 const fs = require("fs")
+const config = require("config")
 const logger = require("../lib/logger")
 const sql = fs.readFileSync(__dirname + '/init_db.sql').toString();
 const pool = new Pool({
-  user: 'test_user',
-  host: 'localhost',
-  database: 'test_db',
-  password: '123',
-  port: 5432,
+  user: config.get("db.user"),
+  host: config.get("db.host"),
+  database: config.get("db.database"),
+  password: config.get("db.password"),
+  port: config.get("db.port"),
 })
 
 // the pool will emit an error on behalf of any idle clients
@@ -36,18 +37,9 @@ function init_db() {
 
 module.exports = {
   init_db,
-  query: (text, params, callback) => {
-    const start = Date.now()
-    return pool.query(text, params, (err, res) => {
-      const duration = Date.now() - start
-      logger.debug('executed query', {
-        text,
-        duration,
-        rows: res.rowCount
-      })
-      callback(err, res)
-
-    })
+  query: async (text, params) => {
+    const res = await pool.query(text, params)
+    return res
   },
   get_client: (callback) => {
     pool.connect((err, client, done) => {

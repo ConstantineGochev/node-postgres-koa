@@ -13,3 +13,10 @@ CREATE TABLE IF NOT EXISTS
         products INT[] NOT NULL,
         status VARCHAR(128) NOT NULL
       );
+
+CREATE TABLE IF NOT EXISTS
+      users(
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(128) NOT NULL,
+      );
+INSERT INTO users(name) VALUES('Admin');

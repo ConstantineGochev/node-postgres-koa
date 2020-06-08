@@ -17,7 +17,11 @@ services:
       image: postgres
       restart: always
       environment:
-         POSTGRES_PASSWORD: example
+         POSTGRES_PASSWORD: 123
+         POSTGRES_USER: test_user
+         POSTGRES_DB: test_db
+      volumes:
+        ./datadir:/var/lib/postgresql/data
 networks:
    backend:
       driver: bridge

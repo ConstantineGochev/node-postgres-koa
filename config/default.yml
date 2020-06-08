@@ -13,3 +13,8 @@ secret: secret
 
 db:
   client: pg
+  user: test_user
+  password: 123
+  host: localhost
+  database: test_db
+  port: 5432

@@ -4,7 +4,7 @@ const _ = require('lodash');
 module.exports = async (ctx, next) => {
   try {
     await next()
-    ctx.assert(ctx.response.body && Number(ctx.response.status) !== 404, 404)
+    //ctx.assert(ctx.response.body && Number(ctx.response.status) !== 404, 404)
   } catch (err) {
     ctx.type = "application/json"
 
@@ -26,7 +26,7 @@ module.exports = async (ctx, next) => {
 
     switch (true) {
       case err instanceof errors.ValidationError:
-        ctx.body.errors = formatValidationError(err)
+        ctx.body.errors = format_validation_error(err)
         ctx.status = _.defaultTo(status, 422)
         break
 

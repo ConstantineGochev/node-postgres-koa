@@ -11,6 +11,7 @@ const logger = require('koa-logger');
 const error = require('../middleware/error-middleware');
 const cors = require('kcors');
 const jwt = require('../middleware/jwt-middleware');
+const user_middleware = require("../middleware/user-middleware")
 const body_parser = require('koa-bodyparser');
 const routes = require('../routes');
 
@@ -28,13 +29,13 @@ app.use(
 );
 
 app.use(error);
-//app.use(jwt);
+app.use(jwt);
 app.use(
   body_parser({
     enableTypes: ['json']
   })
 );
-
+app.use(user_middleware)
 app.use(routes.routes());
 app.use(routes.allowedMethods());
 
